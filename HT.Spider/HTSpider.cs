@@ -24,7 +24,7 @@ namespace HT.Spider
         /// <summary>
         /// 如果需要对request进行设置可使用该事件，否则保持为null
         /// </summary>
-        public event EventHandler<HttpWebRequest> RequestSetter;
+        public event EventHandler<HttpWebRequest> OnSetting;
 
         /// <summary>
         /// 发起请求前执行的事件
@@ -41,7 +41,7 @@ namespace HT.Spider
         /// </summary>
         public event EventHandler<Exception> OnError;
 
-        public async Task<String> Download(Uri uri, WebProxy proxy=null)
+        public async Task<String> GetFunc(Uri uri, WebProxy proxy=null)
         {
             return await Task.Run(() =>
             {
@@ -72,9 +72,9 @@ namespace HT.Spider
                     }
                     request.CookieContainer = this.CookiesContainer;
                     request.ServicePoint.ConnectionLimit = int.MaxValue;
-                    if (RequestSetter != null)
+                    if (OnSetting != null)
                     {
-                        RequestSetter(this, request);
+                        OnSetting(this, request);
                     }
                     using (HttpWebResponse response = (HttpWebResponse)request.GetResponse())
                     {
@@ -132,6 +132,11 @@ namespace HT.Spider
                 }
                 return pageSource;
             });
+        }
+
+        public Task<string> PostFunc(Uri uri, string postData, WebProxy proxy = null)
+        {
+            throw new NotImplementedException();
         }
     }
 }

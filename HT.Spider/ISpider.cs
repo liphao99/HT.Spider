@@ -17,7 +17,7 @@ namespace HT.Spider
         /// <summary>
         /// 如果需要对request进行设置可使用该事件，否则保持为null
         /// </summary>
-        event EventHandler<HttpWebRequest> RequestSetter;
+        event EventHandler<HttpWebRequest> OnSetting;
         
         /// <summary>
         /// 获取请求结果后执行的事件
@@ -35,11 +35,20 @@ namespace HT.Spider
         CookieContainer CookiesContainer { get; set; }
 
         /// <summary>
-        /// 下载网页/发起请求
+        /// 发送Get请求
         /// </summary>
         /// <param name="uri">资源的位置标识符</param>
         /// <param name="proxy">代理ip地址</param>
         /// <returns>一个异步任务，该任务对一个String类型的变量赋值</returns>
-        Task<String> Download(Uri uri,WebProxy proxy=null);
+        Task<String> GetFunc(Uri uri,WebProxy proxy=null);
+
+        /// <summary>
+        /// 发送Post请求
+        /// </summary>
+        /// <param name="uri">资源的位置标识符</param>
+        /// <param name="postData">post请求参数</param>
+        /// <param name="proxy">代理ip地址</param>
+        /// <returns>一个异步任务，该任务对一个String类型的变量赋值</returns>
+        Task<String> PostFunc(Uri uri, String postData, WebProxy proxy = null);
     }
 }
