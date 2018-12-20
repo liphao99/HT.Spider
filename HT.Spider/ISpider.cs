@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace HT.Spider
 {
-    interface ISpider
+    public interface ISpider
     {
         /// <summary>
         /// 发起请求前执行的事件

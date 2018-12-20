@@ -134,6 +134,13 @@ namespace HT.Spider
             });
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="uri"></param>
+        /// <param name="postData"></param>
+        /// <param name="proxy"></param>
+        /// <returns></returns>
         public Task<string> PostFunc(Uri uri, string postData, WebProxy proxy = null)
         {
             throw new NotImplementedException();
