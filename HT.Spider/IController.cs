@@ -14,6 +14,6 @@ namespace HT.Spider
         /// <summary>
         /// 控制整个抓取流程
         /// </summary>
-        void StartCrawling();
+        Task<bool> StartCrawling();
     }
 }
